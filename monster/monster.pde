@@ -1,6 +1,7 @@
 //monster drawing
 
-int spin;
+int spin = 0;
+boolean goingup = true;
 
 void setup() { //start setup =================================================
   size(1000, 1000, P2D);
@@ -19,17 +20,38 @@ void draw() { //start draw ===================================================
   Larm(675, 510, -spin - 35, 1.5);
   Larm(680, 545, -spin - 5, 1.5);
   Larm(690, 580, -spin + 25, 1.3);
- 
-  spin = spin + 1;
-  
-  if (spin > 35) {
-    spin = -spin;
+
+
+  if (goingup) {
+    spin = spin + 1;
+      if (spin >= 35) {
+        goingup = false;
+      }
+  } else {
+    spin = spin - 1;
+    if (spin <= -35) {
+      goingup = true;
+    }
   }
 
+
+  //legs
+  fill(75, 0, 150);
+  noStroke();
+  quad(400, 900, 490, 935, 490, 1000, 400, 1000);
+  quad(510, 935, 600, 900, 600, 1000, 510, 1000);
+  tooth(525, 1000, 180);
+  tooth(555, 1000, 180);
+  tooth(585, 1000, 180);
+  tooth(415, 1000, 180);
+  tooth(445, 1000, 180);
+  tooth(475, 1000, 180);
+
+
   //body
+  fill(75, 0, 150);
   stroke(0);
   strokeWeight(1);
-  fill(75, 0, 150);
   ellipse(500, 640, 400, 600);
 
 
